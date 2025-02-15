@@ -37,7 +37,14 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white shadow-sm">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="w-full bg-[#B87159] flex justify-center items-center text-white text-xs p-2.5">
+        FREE SHIPPING* on orders of $50 or more.{" "}
+        <Link href="/" className="underline mr-1">
+          Carrier surcharge
+        </Link>
+        may apply.
+      </div>
+      <div className="max-w-screen-2xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
             <Link href="/">
@@ -55,7 +62,7 @@ const Navbar = () => {
               >
                 <Link
                   href={item.path}
-                  className="text-gray-700 hover:text-gray-900 px-3 py-2"
+                  className="text-gray-700 hover:text-[#B87159] px-3 py-2"
                 >
                   {item.title}
                 </Link>
