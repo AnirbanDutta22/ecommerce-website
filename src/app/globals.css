@@ -11,7 +11,24 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --primary: #b87159;
   }
+}
+
+@font-face {
+  font-family: "Cedarville Cursive";
+  src: url("/fonts/CedarvilleCursive-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IM Fell English SC";
+  src: url("/fonts/IMFellEnglishSC-Regular.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
 body {

@@ -11,6 +11,11 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: "var(--primary)",
+      },
+      fontFamily: {
+        cursive: ["Cedarville Cursive", "serif"],
+        cursive2: ["IM Fell English SC", "serif"],
       },
     },
   },
