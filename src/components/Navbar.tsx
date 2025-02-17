@@ -42,7 +42,7 @@ const Navbar = () => {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
   return (
-    <nav className="bg-white shadow-sm">
+    <nav className="bg-white shadow-sm z-50">
       <div className="w-full bg-primary flex justify-center items-center text-white text-xs p-2.5">
         FREE SHIPPING* on orders of $50 or more.{" "}
         <Link href="/" className="underline mr-1">
@@ -107,13 +107,13 @@ const Navbar = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 20 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2"
+                      className="absolute left-0 w-48 bg-white rounded-sm py-2 z-50 shadow-inner"
                     >
                       {item.submenu.map((subItem) => (
                         <Link
                           key={subItem.title}
                           href={subItem.path}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:text-primary"
                         >
                           {subItem.title}
                         </Link>
