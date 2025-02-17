@@ -67,16 +67,16 @@ const ProductListing = () => {
           } gap-6`}
         >
           {/* Example product cards */}
-          <ProductCard
-            title="Chesapeake Bay Candle"
-            price={19.12}
-            originalPrice={23.9}
-            images={{
-              primary: "/images/candle1.jpg",
-              hover: "/images/candle1-hover.jpg",
-            }}
-            isNew={true}
-          />
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((index) => (
+            <ProductCard
+              key={index}
+              title="Chesapeake Bay Candle"
+              price={19.12}
+              originalPrice={23.9}
+              images={["/candle1.jpg", "/candle2.jpg", "/candle3.jpg"]}
+              isNew={true}
+            />
+          ))}
           {/* Add more ProductCard components */}
         </div>
       </div>
