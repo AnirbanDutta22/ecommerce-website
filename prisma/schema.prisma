@@ -8,9 +8,115 @@ datasource db {
 }
 
 model User {
-  id    String  @id @default(auto()) @map("_id") @db.ObjectId
-  email String  @unique
-  name  String?
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  firstName String
+  lastName  String
+  username  String   @unique
+  password  String
+  address   Address
+  phone     String?
+  birthDate DateTime
+  role      Role     @default(USER)
+  Review    Review[]
+  Order     Order[]
 
   @@map("users")
+}
+
+type Address {
+  street  String
+  city    String
+  state   String
+  zip     String
+  country String
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Product {
+  id           String      @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  slug         String      @unique
+  description1 String
+  description2 String
+  details      Json
+  ratings      Float       @default(0.00)
+  price        Float
+  discount     Float?
+  images       String[]    @default([""])
+  stock        Int
+  policy       Policy
+  Review       Review[]
+  OrderItem    OrderItem[]
+
+  @@map("products")
+}
+
+type Policy {
+  security String
+  delivery String
+  return   String
+}
+
+model Review {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  rating    Int
+  comment   String?
+  userId    String   @db.ObjectId
+  productId String   @db.ObjectId
+  createdAt DateTime @default(now())
+  product   Product  @relation(fields: [productId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@unique([userId, productId], map: "user_product_unique")
+  @@map("reviews")
+}
+
+model Order {
+  id            String        @id @default(auto()) @map("_id") @db.ObjectId
+  orderId       String        @unique
+  userId        String        @db.ObjectId
+  items         OrderItem[]
+  totalPrice    Float
+  paymentMethod PaymentMethod
+  status        OrderStatus   @default(PENDING)
+  paymentStatus PaymentStatus @default(PENDING)
+  createdAt     DateTime      @default(now())
+  user          User          @relation(fields: [userId], references: [id])
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  orderId   String  @db.ObjectId
+  productId String  @db.ObjectId
+  quantity  Int
+  price     Float
+  order     Order   @relation(fields: [orderId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
+
+  @@map("orderitems")
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  CASH_ON_DELIVERY
+  OTHERS
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
 }
