@@ -14,6 +14,7 @@ export async function GET() {
   }
 }
 
+// POST /api/users
 export async function POST() {
   try {
     const users = await prisma.user.create({
@@ -21,7 +22,7 @@ export async function POST() {
         name: "Test User",
         email: "test@example.com",
       },
-    }); // Fetch all users
+    }); // Create an user
     return NextResponse.json(
       { success: true, message: "User added successfully", data: users },
       { status: 200 }
