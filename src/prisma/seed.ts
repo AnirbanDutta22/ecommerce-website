@@ -1,4 +1,4 @@
-import { prisma } from "../src/lib/db";
+import { prisma } from "../lib/db";
 
 async function main() {
   await prisma.user.create({
