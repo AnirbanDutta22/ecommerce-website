@@ -8,16 +8,16 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  email     String   @unique
-  firstName String
-  lastName  String
-  username  String   @unique
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  email     String    @unique
+  firstName String?
+  lastName  String?
+  username  String    @unique
   password  String
-  address   Address
+  address   Address?
   phone     String?
-  birthDate DateTime
-  role      Role     @default(USER)
+  birthDate DateTime?
+  role      Role      @default(USER)
   Review    Review[]
   Order     Order[]
 
